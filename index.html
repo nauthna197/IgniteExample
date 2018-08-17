@@ -1,12 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <!-- Infragistics Combined CSS -->
+    <link href="css/themes/infragistics/infragistics.theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/structure/infragistics.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery Core -->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <!-- jQuery UI -->
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <!-- Infragistics Combined Scripts -->
+    <script src="js/infragistics.core.js" type="text/javascript"></script>
+    <script src="js/infragistics.lob.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var ds = [
+                { "ProductID": 1, "Name": "Adjustable Race", "ProductNumber": "AR-5381" },
+                { "ProductID": 2, "Name": "Bearing Ball", "ProductNumber": "BA-8327" },
+                { "ProductID": 3, "Name": "BB Ball Bearing", "ProductNumber": "BE-2349" },
+                { "ProductID": 4, "Name": "Headset Ball Bearings", "ProductNumber": "BE-2908" },
+                { "ProductID": 316, "Name": "Blade", "ProductNumber": "BL-2036" },
+                { "ProductID": 317, "Name": "LL Crankarm", "ProductNumber": "CA-5965" },
+                { "ProductID": 318, "Name": "ML Crankarm", "ProductNumber": "CA-6738" },
+                { "ProductID": 319, "Name": "HL Crankarm", "ProductNumber": "CA-7457" },
+                { "ProductID": 320, "Name": "Chainring Bolts", "ProductNumber": "CB-2903" }
+            ];
+
+            $("#gridUpdating").igGrid({
+                primaryKey: "ProductID",
+                columns: [
+                    { headerText: "Product ID", key: "ProductID", dataType: "number" },
+                    {
+                        headerText: "Product Data", key: "ProductData", group: [
+                            { headerText: "Product Name", key: "Name", dataType: "string" },
+                            { headerText: "Product Number", key: "ProductNumber", dataType: "string" }
+                        ]
+                    }
+                ],
+                dataSource: ds,
+                autoGenerateColumns: true,
+                features: [
+                    {
+                        name: "Paging",
+                        type: "local"
+                    },
+                    {
+                        name: "Filtering",
+                        dataFiltered: function (evt, ui) {
+                            console.log("Hello");
+                        }
+                    },
+                    {
+                        name: "RowSelectors"
+                    },
+                    {
+                        name: "Selection"
+                    },
+                    {
+                        name: "Updating",
+                        enableAddRow: true,
+                        editMode: "row",
+                        enableDeleteRow: true,
+                        columnSettings: [
+                            { columnKey: "ProductID", editorOptions: { type: "numeric", disabled: true } },
+                        ]
+                    },
+                    {
+                        name: "MultiColumnHeaders"
+                    }
+                ]
+            });
+        });
+
+
+        $(document).ready(function () {
+            console.log("ready!");
+
+            $("#btn").click(function () {
+                $("#gridUpdating").igGrid("destroy");
+            });
+
+        })
+
+    </script>
 </head>
+
 <body>
-    
+    <table id="gridUpdating"></table>
+
+    <button id="btn">Hello World Des Fuking Troy</button>
 </body>
+
 </html>

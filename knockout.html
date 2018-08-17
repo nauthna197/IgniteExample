@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Infragistics Combined CSS -->
+    <link href="css/themes/infragistics/infragistics.theme.css" rel="stylesheet" type="text/css" />
+    <link href="css/structure/infragistics.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery Core -->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/knockout.js"></script>
+    <!-- jQuery UI -->
+    <script src="js/jquery-ui.js" type="text/javascript"></script>
+    <!-- Infragistics Combined Scripts -->
+    <script src="js/infragistics.core.js" type="text/javascript"></script>
+    <script src="js/infragistics.lob.js" type="text/javascript"></script>
+    <script src="js/extensions/infragistics.datasource.knockoutjs.js"></script>
+    <script src="js/extensions/infragistics.ui.grid.knockout-extensions.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            function generateData() {
+                return [{
+                    firstName: 'Bert',
+                    lastName: 'Bertington'
+                },
+                {
+                    firstName: 'Charles',
+                    lastName: 'Charlesforth'
+                },
+                {
+                    firstName: 'Denise',
+                    lastName: 'Dentiste'
+                }
+                ]
+            }
+            var viewModel = function (data) {
+                var self = this;
+                self.data = ko.observableArray(data);
+
+            }
+            ko.applyBindings(viewModel(generateData()));
+        });
+
+    </script>
+</head>
+
+<body>
+    <table id="grid" data-bind="igGrid: {
+        dataSource: data,
+        width: '90%',
+        height: 300,
+        autoCommit: true,
+        autoGenerateColumns: false,
+        primaryKey: 'index',
+        columns: [
+            {headerText:'First Name',key: 'firstName',dataType:'string'},
+            {headerText:'lastName Name',key: 'lastName',dataType:'string'}
+        ], features: [
+        {
+            name: 'Updating',
+            enableAddRow: false,
+            enableDeleteRow: false,
+            editMode: 'none'
+        }
+    ]
+    }"></table>
+
+    <!-- <button data-bind="click:clicked">Click this</button> -->
+
+
+</body>
+
+</html>
