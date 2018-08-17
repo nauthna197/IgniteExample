@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/knockout.js"></script>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body>
+
+
+    <div data-bind="foreach: imgs">
+        <img data-bind="attr: {src: $data}">
+    </div>
+
+    <script src="js/grills.js"></script>
+
+    <script>
+        var hello = [
+            "https://3.bp.blogspot.com/--rjYav6U_J4/W3WuBQ40GiI/AAAAAAAAEew/4zGL3-BrE-IZPkRgbp2MF_yqrNT-rGTegCLcBGAs/s1600/gai-xinh-1.png",
+            "https://2.bp.blogspot.com/-Jm8VfOjtkq4/W3WuEmY2NCI/AAAAAAAAEfU/ddcUTUYEPTMJA_6Zq99-UWvFYvwlbLTTACLcBGAs/s1600/gai-xinh-2.png",
+            "https://3.bp.blogspot.com/-aRJvMAzV9mY/W3WuH0Mhp2I/AAAAAAAAEf4/ptTZSiYLgcct4NIzj6cB_us39Gsl6psdACLcBGAs/s1600/gai-xinh-3.png",
+            "https://4.bp.blogspot.com/-i4Ac1McCzXE/W3WuIPz5H5I/AAAAAAAAEf8/8i_nu_4Pbfkx9xcDtSwgcs2JvBR25ttAQCLcBGAs/s1600/gai-xinh-4.png",
+            "https://4.bp.blogspot.com/-uXf3kRqYosI/W3WuIyDfgbI/AAAAAAAAEgA/a2_SSal6qdAGHw-1L0N2IMY8KbuBG6tlwCLcBGAs/s1600/gai-xinh-5.png",
+            "https://1.bp.blogspot.com/-r1xeUTueDU8/W3WuIzmrjpI/AAAAAAAAEgE/o0pQ5hV4xygg2OEiol8sNKBlEPSFr1xMgCLcBGAs/s1600/gai-xinh-6.png",
+            "https://1.bp.blogspot.com/-KEWBddzlLTs/W3WuJKL3M5I/AAAAAAAAEgI/8HnTCnYbF4wOZrv2-aQzvN93MFyX2WhQACLcBGAs/s1600/gai-xinh-7.png",
+            "https://3.bp.blogspot.com/-8Ph429nN3RE/W3WuJueYd-I/AAAAAAAAEgM/3XNduPBNSO8BcNdgvH0jRmApoJgevUDGACLcBGAs/s1600/gai-xinh-8.png",
+            "https://1.bp.blogspot.com/-bo8CyVuzZuI/W3WuKC2berI/AAAAAAAAEgQ/mXDbeMh9Fj81mv-wtnxJZH1XoALJE7voACLcBGAs/s1600/gai-xinh-9.png",
+            "https://4.bp.blogspot.com/-eamRNPWPUks/W3WuBBQOsfI/AAAAAAAAEeo/b-bSJ5DLGbwOiA-LCQZOGR9uX_1-JXoWQCLcBGAs/s1600/gai-xinh-10.png",
+            "https://1.bp.blogspot.com/-bnXThppSwIQ/W3WuBafetUI/AAAAAAAAEes/QmE5bmxEg0EicFlCOViXbIVb43EBBWWkQCLcBGAs/s1600/gai-xinh-11.png",
+            "https://1.bp.blogspot.com/-r8bqCjAmZDQ/W3WuCdesBlI/AAAAAAAAEe0/yuhIez-6QlMS8hYpW0CHSzUMC1ue35zdACLcBGAs/s1600/gai-xinh-12.png",
+            "https://4.bp.blogspot.com/-rRZOJQUIoSM/W3WuCR1mHdI/AAAAAAAAEe4/VTqDzbcwnpIFNRPDqjaD15emklMMLoEcwCLcBGAs/s1600/gai-xinh-13.png",
+            "https://2.bp.blogspot.com/-7MOayosybpg/W3WuCiUi7YI/AAAAAAAAEe8/YuamCx84Y7gcxiid5nMBajAC3uZkS0vDwCLcBGAs/s1600/gai-xinh-14.png",
+            "https://1.bp.blogspot.com/--reAwRC9nDw/W3WuDI5rtHI/AAAAAAAAEfA/dSGSms6KlEcLZssxtayKFmv5EspGMIQQwCLcBGAs/s1600/gai-xinh-15.png",
+            "https://1.bp.blogspot.com/-bK4u42Dv_rs/W3WuDZE5iqI/AAAAAAAAEfE/ug7134riAvIR6YZbNeVMYfwHC7xHIRaKQCLcBGAs/s1600/gai-xinh-16.png",
+            "https://2.bp.blogspot.com/-UJRrIHp7Hig/W3WuDrrCKyI/AAAAAAAAEfI/sswBzAl1bgEzJmFu4fk3UPhKpxA8Cq4bACLcBGAs/s1600/gai-xinh-17.png",
+            "https://4.bp.blogspot.com/-dsxd-yWbdOY/W3WuD-bt1iI/AAAAAAAAEfM/sjsP-ehfLvool69Hh4TEL1olFd_hjGkQACLcBGAs/s1600/gai-xinh-18.png",
+            "https://1.bp.blogspot.com/-sRrlm7LNYos/W3WuEpABCaI/AAAAAAAAEfQ/I5EQn-yCoxY6kXEmd02mOqhYE0uHp5v4QCLcBGAs/s1600/gai-xinh-19.png",
+            "https://3.bp.blogspot.com/-QiodqBcivVE/W3WuFF6QxyI/AAAAAAAAEfY/1KEFPK3o9IM-nNu3wYrObBunL0Y_Q4AdwCLcBGAs/s1600/gai-xinh-20.png",
+            "https://1.bp.blogspot.com/-DGWlMeOYY6Y/W3WuFg_J11I/AAAAAAAAEfc/LX5NE7ZsZ9UuDb0H1A0SiqSatR_JisQJACLcBGAs/s1600/gai-xinh-21.png",
+            "https://2.bp.blogspot.com/-vBEXPAY3F6c/W3WuF7t0LgI/AAAAAAAAEfg/MlvwStmT0Co3SU8hFqzGAH4zMeIqO3naQCLcBGAs/s1600/gai-xinh-22.png",
+            "https://2.bp.blogspot.com/-dRLhUdbdY4Q/W3WuGHmAQtI/AAAAAAAAEfk/O-sZcX_5cKsMcwPlEjSAEVMFbPpPV5c9QCLcBGAs/s1600/gai-xinh-23.png",
+            "https://4.bp.blogspot.com/-oQVyX45rVCE/W3WuGrlyW4I/AAAAAAAAEfo/r2GB7y6GlLEeTmeZBwT8ug5EsW_VqRGUACLcBGAs/s1600/gai-xinh-24.png",
+            "https://3.bp.blogspot.com/-NraWS8Apgjo/W3WuG4H4gWI/AAAAAAAAEfs/DyLVcZ0gPycZvzq6g685K6aWqQ9plPNegCLcBGAs/s1600/gai-xinh-25.png",
+            "https://4.bp.blogspot.com/-ZX0hv8GH3ys/W3WuHWD4B3I/AAAAAAAAEfw/9OLABm9yQO45Pmymrhk8wHuHZ-h0Cu2JQCLcBGAs/s1600/gai-xinh-26.png",
+            "https://4.bp.blogspot.com/-D1fDg6ui4-A/W3WuH12qE9I/AAAAAAAAEf0/aibvSCHQJPEzH7j0VXe_L74XNwAkHgRfwCLcBGAs/s1600/gai-xinh-27.png"
+        ]
+
+        var viewModel = {
+            imgs: hello,
+        }
+
+        ko.applyBindings(viewModel);
+    </script>
+</body>
+
+</html>
