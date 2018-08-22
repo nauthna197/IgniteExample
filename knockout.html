@@ -2,69 +2,156 @@
 <html>
 
 <head>
-    <!-- Infragistics Combined CSS -->
-    <link href="css/themes/infragistics/infragistics.theme.css" rel="stylesheet" type="text/css" />
-    <link href="css/structure/infragistics.css" rel="stylesheet" type="text/css" />
-    <!-- jQuery Core -->
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/knockout.js"></script>
-    <!-- jQuery UI -->
-    <script src="js/jquery-ui.js" type="text/javascript"></script>
-    <!-- Infragistics Combined Scripts -->
-    <script src="js/infragistics.core.js" type="text/javascript"></script>
-    <script src="js/infragistics.lob.js" type="text/javascript"></script>
-    <script src="js/extensions/infragistics.datasource.knockoutjs.js"></script>
-    <script src="js/extensions/infragistics.ui.grid.knockout-extensions.js"></script>
+    <!-- Ignite UI Required Combined CSS Files -->
+    <link href="http://cdn-na.infragistics.com/igniteui/2018.1/latest/css/themes/infragistics/infragistics.theme.css" rel="stylesheet"
+    />
+    <link href="http://cdn-na.infragistics.com/igniteui/2018.1/latest/css/structure/infragistics.css" rel="stylesheet" />
+
+    <script src="http://ajax.aspnetcdn.com/ajax/modernizr/modernizr-2.8.3.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+    <!-- Ignite UI Required Combined JavaScript Files -->
+    <script src="http://cdn-na.infragistics.com/igniteui/2018.1/latest/js/infragistics.core.js"></script>
+    <script src="http://cdn-na.infragistics.com/igniteui/2018.1/latest/js/infragistics.lob.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+
+    <script src="https://cdn-na.infragistics.com/igniteui/2018.1/latest/js/extensions/infragistics.ui.tree.knockout-extensions.js"></script>
+    <script src="https://cdn-na.infragistics.com/igniteui/2018.1/latest/js/extensions/infragistics.ui.editors.knockout-extensions.js"></script>
+    <script src="https://cdn-na.infragistics.com/igniteui/2018.1/latest/js/extensions/infragistics.datasource.knockoutjs.js"></script>
+    <script src="https://cdn-na.infragistics.com/igniteui/2018.1/latest/js/extensions/infragistics.ui.grid.knockout-extensions.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
 
-            function generateData() {
-                return [{
-                    firstName: 'Bert',
-                    lastName: 'Bertington'
+            var Item = function (item) {
+                this.ProductID = ko.observable(item.ProductID);
+                this.Name = ko.observable(item.Name);
+                this.ProductNumber = ko.observable(item.ProductNumber);
+            }
+            var ds = [{
+                    "ProductID": 1,
+                    "Name": "Adjustable Race",
+                    "ProductNumber": "AR-5381"
                 },
                 {
-                    firstName: 'Charles',
-                    lastName: 'Charlesforth'
+                    "ProductID": 2,
+                    "Name": "Bearing Ball",
+                    "ProductNumber": "BA-8327"
                 },
                 {
-                    firstName: 'Denise',
-                    lastName: 'Dentiste'
+                    "ProductID": 3,
+                    "Name": "BB Ball Bearing",
+                    "ProductNumber": "BE-2349"
+                },
+                {
+                    "ProductID": 4,
+                    "Name": "Headset Ball Bearings",
+                    "ProductNumber": "BE-2908"
+                },
+                {
+                    "ProductID": 316,
+                    "Name": "Blade",
+                    "ProductNumber": "BL-2036"
+                },
+                {
+                    "ProductID": 317,
+                    "Name": "LL Crankarm",
+                    "ProductNumber": "CA-5965"
+                },
+                {
+                    "ProductID": 318,
+                    "Name": "ML Crankarm",
+                    "ProductNumber": "CA-6738"
+                },
+                {
+                    "ProductID": 319,
+                    "Name": "HL Crankarm",
+                    "ProductNumber": "CA-7457"
+                },
+                {
+                    "ProductID": 320,
+                    "Name": "Chainring Bolts",
+                    "ProductNumber": "CB-2903"
                 }
-                ]
-            }
-            var viewModel = function (data) {
+            ];
+
+            var viewModel = function () {
                 var self = this;
-                self.data = ko.observableArray(data);
+                self.data = ko.observableArray([]);
+                for (var i = 0; i < ds.length; i++) {
+                    self.data.push(new Item(ds[i]));
+                }
 
             }
-            ko.applyBindings(viewModel(generateData()));
+            ko.applyBindings(viewModel());
         });
-
     </script>
 </head>
 
 <body>
     <table id="grid" data-bind="igGrid: {
         dataSource: data,
-        width: '90%',
-        height: 300,
+        width: '900px',
         autoCommit: true,
         autoGenerateColumns: false,
-        primaryKey: 'index',
+        primaryKey: 'ProductID',
         columns: [
-            {headerText:'First Name',key: 'firstName',dataType:'string'},
-            {headerText:'lastName Name',key: 'lastName',dataType:'string'}
-        ], features: [
-        {
-            name: 'Updating',
-            enableAddRow: false,
-            enableDeleteRow: false,
-            editMode: 'none'
-        }
-    ]
-    }"></table>
+            {
+                headerText: 'ProductID',
+                key: 'ProductID',
+                dataType: 'number'
+            },
+            {
+                headerText: 'Name',
+                key: 'Name',
+                group: [{
+                        headerText: 'Name',
+                        key: 'Name',
+                        dataType: 'string'
+                    },
+                    {
+                        headerText: 'ProductNumber',
+                        key: 'ProductNumber',
+                        dataType: 'string'
+                    }
+                ]
+            }
 
+        ],
+        features: [
+                {
+                    name: 'Filtering',
+                    dataFiltered: function (evt, ui) {
+                        console.log('Hello');
+                    }
+                },
+                {
+                    name: 'RowSelectors'
+                },
+                {
+                    name: 'Selection'
+                },
+                {
+                    name: 'Paging',
+                    type: 'local'
+                },
+                {
+                    name: 'Updating',
+                    editCellEnding: function(evt, ui){
+                        if(ui.update){
+                            alert(ui.value);
+                        }
+                     },
+                    columnSettings: [
+                        { columnKey: 'ProductID', editorOptions: { type: 'numeric', disabled: true} },
+                    ]
+                },
+                {
+                    name:'MultiColumnHeaders'
+                }
+            ]
+    }"></table>
+    <div data-bind="text: ko.toJSON(data)"></div>
     <!-- <button data-bind="click:clicked">Click this</button> -->
 
 
